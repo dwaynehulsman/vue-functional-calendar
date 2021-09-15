@@ -4,7 +4,7 @@
     <div v-if="endActive" class="vfc-base-end"></div>
     <span
       v-if="!day.hideLeftAndRightDays"
-      :class="getClassNames(day)"
+      :class="classNames"
       @click.self="$parent.$parent.clickDay(day, isDisabledDate)"
       @mouseover="dayMouseOver"
     >
@@ -60,8 +60,20 @@ export default {
   data() {
     return {
       toolTip: false,
-      onNumber: false
+      onNumber: false,
+      classNames: ''
       // toolTipTxt
+    }
+  },
+  created() {
+    this.classNames = this.getClassNames(this.day)
+  },
+  watch: {
+    fConfigs: {
+      deep: true,
+      handler() {
+        this.classNames = this.getClassNames(this.day)
+      }
     }
   },
   computed: {
