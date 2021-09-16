@@ -74,6 +74,12 @@ export default {
       handler() {
         this.classNames = this.getClassNames(this.day)
       }
+    },
+    day: {
+      deep: true,
+      handler() {
+        this.classNames = this.getClassNames(this.day)
+      }
     }
   },
   computed: {
@@ -431,9 +437,7 @@ export default {
         ) {
           classes.push('vfc-marked')
         }
-        // } else if (day.isHovered) {
-        // classes.push('vfc-hovered')
-        // }
+
         if (this.fConfigs.markedDates.includes(day.date)) {
           classes.push('vfc-borderd')
         }
